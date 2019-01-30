@@ -1,0 +1,1 @@
+New-AzureRmResourceGroupDeployment  -ResourceGroupName <<name of the resource group>>  -TemplateFile "<< path to your CrossSubscriptionNestedStorageAccount.json file >>" -TemplateParameterFile "<< path to your C:\Chapter 04\CrossSubscriptionNestedStorageAccount.parameters.json file >>"  -Verbose 

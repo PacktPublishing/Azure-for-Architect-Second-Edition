@@ -1,0 +1,7 @@
+az login
+
+
+az account set --subscription "<<provide your own subscription guid>>"
+
+az deployment --location "<<provide Azure location>>" --template-file "<<provide path to multipleResourceGroups.json file>>" --parameters @"<<provide path to multipleResourceGroups.parameters.json file>>" --verbose
+

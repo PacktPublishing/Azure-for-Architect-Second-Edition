@@ -1,0 +1,1 @@
+New-AzureRmResourceGroupDeployment  -TemplateFile "<< path to your CrossSubscriptionStorageAccount.json file >>" -ResourceGroupName "<<provide your base subscription resource group name>>" -Verbose 

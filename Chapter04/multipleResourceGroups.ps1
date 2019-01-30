@@ -1,0 +1,1 @@
+New-AzureRmDeployment  -Location "<<provide Azure location>>"  -TemplateFile "<<provide path to multipleResourceGroups.json file>>" -TemplateParameterFile "<<provide path to multipleResourceGroups.parameters.json file>>"  -Verbose 
