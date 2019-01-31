@@ -1,7 +1,0 @@
-#r "Microsoft.Azure.WebJobs.Extensions.DurableTask"
-
-public static string Run(string name)
-{
-    await Task.Delay(10000);
-    return $"Hello {name}!";
-}
