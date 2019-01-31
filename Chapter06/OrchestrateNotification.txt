@@ -1,0 +1,34 @@
+/*
+ * This function is not intended to be invoked directly. Instead it will be
+ * triggered by an HTTP starter function.
+ * 
+ * Before running this sample, please:
+ * - create a Durable activity function (default name is "Hello")
+ * - create a Durable HTTP starter function
+ */
+
+#r "Microsoft.Azure.WebJobs.Extensions.DurableTask"
+
+public static async Task<List<string>> Run(DurableOrchestrationContext context)
+{
+    if(!ctx.IsReplaying)
+        log.Info("calling activity email notification");
+    
+    employee input = ctx.GetInput<employee>();
+        
+    var emailResult = await
+    ctx.CallActivityAsync<string>("SendEMailNotification", input);
+        
+    var SMSResult = await
+    ctx.CallActivityAsync<string>("SendSMSNotification", input);
+        
+    return SMSResult;
+}
+
+public class employee
+{
+    public string firstName { get; set; }
+    public string lastName { get; set; }
+    public string Email { get; set; }
+    public string PhoneNumber { get; set; }
+}
