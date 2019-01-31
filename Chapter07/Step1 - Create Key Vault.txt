@@ -1,0 +1,7 @@
+Login-AzureRmAccount
+
+Set-AzureRmContext -Subscription xxxxxxxx-xxxx-xxxx-xxxxxxxxxxxxxxx
+
+New-AzureRmResourceGroup -Name IntegrationDemo -Location "West Europe" -Verbose
+
+New-AzureRmKeyVault -Name keyvaultbook -ResourceGroupName IntegrationDemo -Location "West Europe" -EnabledForDeployment -EnabledForTemplateDeployment -EnabledForDiskEncryption -EnableSoftDelete -EnablePurgeProtection -Sku Standard -Verbose

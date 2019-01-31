@@ -1,0 +1,3 @@
+﻿New-AzureRmEventGridSubscription -TopicName mclassgrid -EventSubscriptionName "customtopicsubscriptionautocar" -ResourceGroupName CustomEventGridDemo -EndpointType webhook `
+-Endpoint "https://westeuropefunction.azurewebsites.net/runtime/webhooks/EventGrid?functionName=EventGridTrigger1&code=/oQYLwWQfZ9YI5JO/Lss/5il6UCOvurSX3bBed9Kwf4SliIkxWQIig==" `
+-Verbose

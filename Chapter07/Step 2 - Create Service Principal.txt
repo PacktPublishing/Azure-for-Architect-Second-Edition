@@ -1,0 +1,8 @@
+Login-AzureRmAccount
+
+Set-AzureRmContext -Subscription xxxxxxxx-xxxx-xxxx-xxxxxxxxxxxxxxx
+
+$app = New-AzureRmADApplication -DisplayName "https://keyvault.book.com" -IdentifierUris "https://keyvault.book.com" -HomePage "https://keyvault.book.com" -Password (ConvertTo-SecureString -String sysadminpassword -AsPlainText -Force) -Verbose
+
+
+New-AzureRmADServicePrincipal -ApplicationId $app.ApplicationId -DisplayName "https://keyvault.book.com" -Password (ConvertTo-SecureString -String sysadminpassword -AsPlainText -Force) -Scope "/subscriptions/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx" -Role Owner -StartDate ([datetime]::Now) -EndDate $([datetime]::now.AddYears(1)) -Verbose

@@ -1,0 +1,7 @@
+
+Login-AzureRmAccount
+
+Set-AzureRmContext -Subscription xxxxxxxx-xxxx-xxxx-xxxxxxxxxxxxxxx
+
+# object id is the ID property available as an output of New-AzureRmADServicePrincipal cmdlet
+Set-AzureRmKeyVaultAccessPolicy -VaultName keyvaultbook -ResourceGroupName IntegrationDemo -ObjectId "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx" -PermissionsToKeys get,list,create -PermissionsToCertificates get,list,import -PermissionsToSecrets get,list -Verbose

@@ -1,0 +1,32 @@
+Import-module -name Azurerm
+Login-AzureRmAccount
+
+Set-AzureRmContext -Subscription xxxxxxxx-xxxx-xxxx-xxxxxxxxxxxxxxx
+
+$currentDate = Get-Date
+$expiryDate = $currentDate.AddYears(1)
+$finalDate = $expiryDate.AddYears(1)
+$servicePrincipalName = "https://automation.book.com"
+$automationCertificate = New-SelfSignedCertificate -DnsName $servicePrincipalName -KeyExportPolicy Exportable -Provider "Microsoft Enhanced RSA and AES Cryptographic Provider" -NotAfter $finalDate -CertStoreLocation "Cert:\LocalMachine\My"
+
+
+$securepfxpwd = ConvertTo-SecureString -String 'password' -AsPlainText -Force 
+
+$cert1 = Get-Item -Path Cert:\LocalMachine\My\$($automationCertificate.Thumbprint)
+
+Export-PfxCertificate -Password $securepfxpwd -FilePath "C:\book\azureautomation.pfx" -Cert $cert1
+
+$newCert = New-Object System.Security.Cryptography.X509Certificates.X509Certificate -ArgumentList "C:\book\azureautomation.pfx", $securepfxpwd
+$newcertdata = [System.Convert]::ToBase64String($newCert.GetRawCertData())
+
+$keyid = [Guid]::NewGuid()
+
+$keyCredential = New-Object -TypeName Microsoft.Azure.Graph.RBAC.Version1_6.ActiveDirectory.PSADKeyCredential
+$keyCredential.StartDate = [datetime]::Now
+$keyCredential.KeyId = $keyid
+$keyCredential.CertValue = $newcertdata
+$keyCredential.EndDate = [datetime]::Now.AddYears(1)
+
+$adAppName = "http://automationcertcred2" 
+$adApp =New-AzureRmADApplication -DisplayName $adAppName -HomePage $adAppName -IdentifierUris $adAppName -KeyCredentials $keyCredential -Verbose
+New-AzureRmADServicePrincipal -ApplicationId $adApp.ApplicationId.Guid -Role owner

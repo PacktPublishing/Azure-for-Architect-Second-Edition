@@ -1,0 +1,28 @@
+﻿New-AzureRmEventGridTopic -ResourceGroupName CustomEventGridDemo -Name "KeyVaultAssetsExpiry" -Location "West Europe" 
+
+$topicEndpoint = (Get-AzureRmEventGridTopic -ResourceGroupName CustomEventGridDemo -Name mclassgrid).Endpoint
+
+$keys = (Get-AzureRmEventGridTopicKey -ResourceGroupName CustomEventGridDemo -Name mclassgrid ).Key1
+
+$eventgridDataMessage = @{
+    id = [System.guid]::NewGuid()
+    subject = "DriverLess car unleashed"
+    eventType = "Catastrophic engine failure"
+    eventTime = [System.DateTime]::UtcNow
+    data = @{
+        EngineNumber = "abc123"
+        CurrentSpeed = "200 KM"
+        Currentelevation = "2000FT"
+    }
+}
+
+$finalBody = "[" + $(ConvertTo-Json $eventgridDataMessage) + "]"
+
+
+$header = @{
+    "contentType" = "application/json"
+    "aeg-sas-key" = $keys
+}
+
+Invoke-WebRequest -Uri $topicEndpoint -Body $finalBody -Headers $header -Method Post
+

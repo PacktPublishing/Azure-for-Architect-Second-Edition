@@ -1,0 +1,21 @@
+Login-AzureRmAccount -ServicePrincipal -CertificateThumbprint "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" -ApplicationId "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx" -Tenant "xxxxxxxx-xxxxxxxx-xxxx-xxxxxxxxxxxx"
+
+Get-AzureRmcontext
+
+$IntegrationResourceGroup = "VaultMonitoring"
+$rgLocation = "West Europe"
+$automationAccountName = "MonitoringKeyVault"
+
+New-AzureRmResourceGroup -name $IntegrationResourceGroup -Location $rgLocation
+
+New-AzureRmAutomationAccount -Name $automationAccountName -ResourceGroupName $IntegrationResourceGroup -Location $rgLocation -Plan Free
+
+New-AzureRmAutomationVariable -Name "azuresubscriptionid" -AutomationAccountName $automationAccountName -ResourceGroupName $IntegrationResourceGroup -Value " xxxxxxxx-xxxx-xxxx-xxxxxxxxxxxxxxxx" -Encrypted $true
+New-AzureRmAutomationVariable -Name "azuretenantid" -AutomationAccountName $automationAccountName -ResourceGroupName $IntegrationResourceGroup -Value " xxxxxxxx-xxxx-xxxx-xxxxxxxxxxxxxxxx" -Encrypted $true
+New-AzureRmAutomationVariable -Name "azureappid" -AutomationAccountName $automationAccountName -ResourceGroupName $IntegrationResourceGroup -Value " xxxxxxxx-xxxx-xxxx-xxxxxxxxxxxxxxxx" -Encrypted $true
+
+$securepfxpwd = ConvertTo-SecureString -String 'password' -AsPlainText -Force 
+
+New-AzureRmAutomationCertificate -Name "RitestSubscriptionCertificate" -Path "C:\book\azureautomation.pfx" -Password $securepfxpwd -AutomationAccountName $automationAccountName -ResourceGroupName $IntegrationResourceGroup
+
+
