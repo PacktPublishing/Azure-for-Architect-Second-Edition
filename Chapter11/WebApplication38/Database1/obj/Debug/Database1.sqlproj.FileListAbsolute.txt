@@ -1,0 +1,9 @@
+C:\Users\rites\source\repos\WebApplication38\Database1\bin\Debug\Database1.dacpac
+C:\Users\rites\source\repos\WebApplication38\Database1\bin\Debug\Database1.dll
+C:\Users\rites\source\repos\WebApplication38\Database1\bin\Debug\Database1.pdb
+C:\Users\rites\source\repos\WebApplication38\Database1\obj\Debug\Database1.dll
+C:\Users\rites\source\repos\WebApplication38\Database1\obj\Debug\Database1.pdb
+C:\Users\rites\source\repos\WebApplication38\Database1\obj\Debug\Model.xml
+C:\Users\rites\source\repos\WebApplication38\Database1\obj\Debug\refactor.xml
+C:\Users\rites\source\repos\WebApplication38\Database1\obj\Debug\postdeploy.sql
+C:\Users\rites\source\repos\WebApplication38\Database1\obj\Debug\predeploy.sql

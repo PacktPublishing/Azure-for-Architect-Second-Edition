@@ -1,0 +1,39 @@
+﻿@using System.Data;
+@using System.Configuration;
+@using System.Data.SqlClient;
+
+
+@{
+    ViewBag.Title = "About";
+}
+<h2>@ViewBag.Title.</h2>
+<h3>@ViewBag.Message</h3>
+
+<p>Use this area to provide additional information. Ritesh Modi  ... </p>
+@{
+    string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["sqldatastring"].ConnectionString;
+    string sql = "Select * from dbo.Table1";
+    SqlConnection cnn = new SqlConnection(connectionString);
+
+    cnn.Open();
+    SqlCommand cmd = new SqlCommand(sql, cnn);
+    SqlDataReader reader = cmd.ExecuteReader();
+    var myData = new List<string>();
+    while (reader.Read())
+    {
+
+        int customerid = reader.GetInt32(0);
+        String firstName = reader.GetString(1);
+        String lastName = reader.GetString(2);
+        String result = customerid + " " + firstName + " " + lastName;
+        myData.Add(result);
+    };
+
+
+
+}
+
+@foreach (string aa in myData)
+    {<p>@aa</p>}
+
+
