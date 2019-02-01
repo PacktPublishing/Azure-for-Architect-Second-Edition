@@ -51,7 +51,7 @@ With the following software and hardware list you can run all code files present
 * Hands-On Azure for Developers [[Packt]](https://www.packtpub.com/virtualization-and-cloud/hands-azure-developers?utm_source=github&utm_medium=repository&utm_campaign=9781789340624) [[Amazon]](https://www.amazon.com/dp/1789340624)
 
 * Hands-On Linux Administration on Azure [[Packt]](https://www.packtpub.com/virtualization-and-cloud/hands-linux-administration-azure?utm_source=github&utm_medium=repository&utm_campaign=9781789130966) [[Amazon]](https://www.amazon.com/dp/1789130964)
-## Get to Know the Authors
+## Get to Know the Author
 **Ritesh Modi**
 is an ex-Microsoft Senior Technology Evangelist. He is Microsoft Regional Director as well as Regional lead for Microsoft Certified Trainers.
 He is an architect, a senior evangelist, cloud architect, published author, speaker, and a known leader for his contributions towards blockchain, Ethereum, data centers, Azure, bots, cognitive services, DevOps, artificial intelligence, and automation. He is the author of five books.
